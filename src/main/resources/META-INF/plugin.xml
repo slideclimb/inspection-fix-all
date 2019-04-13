@@ -1,0 +1,37 @@
+<idea-plugin>
+    <id>com.abby.plugin-test</id>
+    <name>Test</name>
+    <vendor>abby</vendor>
+
+    <description>Test plugin for playing around with IJ plugins.</description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+    <extensions defaultExtensionNs="com.intellij">
+
+        <!-- Files and project -->
+        <moduleType id="LATEX_MODULE_TYPE" implementationClass="nl.abby.plugintest.modules.LatexModuleType"/>
+        <fileTypeFactory implementation="nl.abby.plugintest.file.TexifyFileTypeFactory"/>
+
+        <!-- Templates -->
+        <internalFileTemplate name="LaTeX Source"/>
+        <internalFileTemplate name="LaTeX Package"/>
+
+        <!-- Languages -->
+        <lang.parserDefinition language="Latex" implementationClass="nl.abby.plugintest.LatexParserDefinition"/>
+        <lang.syntaxHighlighterFactory language="Latex" implementationClass="nl.abby.plugintest.highlighting.LatexSyntaxHighlighterFactory"/>
+        <lang.commenter language="Latex" implementationClass="nl.abby.plugintest.editor.LatexCommenter"/>
+        <lang.braceMatcher language="Latex" implementationClass="nl.abby.plugintest.highlighting.LatexPairedBraceMatcher"/>
+
+        <!-- Annotators -->
+        <annotator language="Latex" implementationClass="nl.abby.plugintest.highlighting.LatexAnnotator"/>
+
+        <localInspection language="Latex" implementationClass="nl.abby.plugintest.inspections.latex.LatexCdotInspection"
+                         groupName="LaTeX" displayName="Use of . instead of \cdot"
+                         enabledByDefault="true"/>
+    </extensions>
+
+</idea-plugin>
