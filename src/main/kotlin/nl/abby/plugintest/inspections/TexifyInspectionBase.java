@@ -1,6 +1,5 @@
 package nl.abby.plugintest.inspections;
 
-import nl.abby.plugintest.PsiKt;
 import com.intellij.codeInspection.InspectionManager;
 import com.intellij.codeInspection.LocalInspectionTool;
 import com.intellij.codeInspection.ProblemDescriptor;
@@ -9,6 +8,7 @@ import com.intellij.psi.PsiFile;
 import nl.abby.plugintest.insight.InsightGroup;
 import kotlin.reflect.jvm.internal.impl.utils.SmartList;
 import nl.abby.plugintest.insight.InsightGroup;
+import nl.abby.plugintest.util.PsiKt;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

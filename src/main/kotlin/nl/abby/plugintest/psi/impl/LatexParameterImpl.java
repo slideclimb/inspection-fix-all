@@ -4,12 +4,12 @@ package nl.abby.plugintest.psi.impl;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
+import nl.abby.plugintest.psi.LatexOptionalParam;
+import nl.abby.plugintest.psi.LatexParameter;
+import nl.abby.plugintest.psi.LatexRequiredParam;
+import nl.abby.plugintest.psi.LatexVisitor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import psi.LatexOptionalParam;
-import psi.LatexParameter;
-import psi.LatexRequiredParam;
-import psi.LatexVisitor;
 
 public class LatexParameterImpl extends ASTWrapperPsiElement implements LatexParameter {
 

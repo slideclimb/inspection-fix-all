@@ -4,9 +4,9 @@ package nl.abby.plugintest.psi.impl;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
+import nl.abby.plugintest.psi.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import psi.*;
 
 public class LatexEnvironmentImpl extends ASTWrapperPsiElement implements LatexEnvironment {
 

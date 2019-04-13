@@ -4,9 +4,9 @@ package nl.abby.plugintest.psi.impl;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
+import nl.abby.plugintest.psi.LatexNormalText;
+import nl.abby.plugintest.psi.LatexVisitor;
 import org.jetbrains.annotations.NotNull;
-import psi.LatexNormalText;
-import psi.LatexVisitor;
 
 public class LatexNormalTextImpl extends ASTWrapperPsiElement implements LatexNormalText {
 

@@ -5,11 +5,12 @@ import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
+import nl.abby.plugintest.psi.LatexContent;
+import nl.abby.plugintest.psi.LatexOpenGroup;
+import nl.abby.plugintest.psi.LatexVisitor;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-
-import static nl.abby.plugintest.psi.LatexTypes.*;
 
 public class LatexOpenGroupImpl extends ASTWrapperPsiElement implements LatexOpenGroup {
 

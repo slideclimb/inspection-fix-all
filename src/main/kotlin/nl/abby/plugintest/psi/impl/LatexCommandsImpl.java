@@ -15,7 +15,6 @@ import nl.abby.plugintest.psi.LatexCommands;
 import nl.abby.plugintest.psi.LatexParameter;
 import nl.abby.plugintest.psi.LatexRequiredParam;
 import nl.abby.plugintest.psi.LatexVisitor;
-import nl.abby.plugintest.reference.LatexLabelReference;
 import nl.abby.plugintest.util.Magic;
 import nl.abby.plugintest.util.PsiCommandsKt;
 import org.jetbrains.annotations.NotNull;

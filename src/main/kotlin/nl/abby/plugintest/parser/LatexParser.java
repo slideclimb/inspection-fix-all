@@ -8,9 +8,9 @@ import com.intellij.lang.PsiBuilder.Marker;
 import com.intellij.lang.PsiParser;
 import com.intellij.lang.parser.GeneratedParserUtilBase;
 import com.intellij.psi.tree.IElementType;
+import nl.abby.plugintest.psi.LatexTypes;
 
 import static com.intellij.lang.parser.GeneratedParserUtilBase.*;
-import static psi.LatexTypes.*;
 
 @SuppressWarnings({"SimplifiableIfStatement", "UnusedAssignment"})
 public class LatexParser implements PsiParser, LightPsiParser {

@@ -4,10 +4,9 @@ package nl.abby.plugintest.psi.impl;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
+import nl.abby.plugintest.psi.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import static nl.abby.plugintest.psi.LatexTypes.*;
 
 public class LatexNoMathContentImpl extends ASTWrapperPsiElement implements LatexNoMathContent {
 

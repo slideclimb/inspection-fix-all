@@ -5,9 +5,10 @@ import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
+import nl.abby.plugintest.psi.LatexComment;
+import nl.abby.plugintest.psi.LatexVisitor;
 import org.jetbrains.annotations.NotNull;
 
-import static nl.abby.plugintest.psi.LatexTypes.*;
 import static nl.abby.plugintest.psi.LatexTypes.COMMENT_TOKEN;
 
 public class LatexCommentImpl extends ASTWrapperPsiElement implements LatexComment {

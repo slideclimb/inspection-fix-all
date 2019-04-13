@@ -1,11 +1,14 @@
 package nl.abby.plugintest.index.stub;
 
 import com.intellij.psi.stubs.*;
+import nl.abby.plugintest.LatexLanguage;
+import nl.abby.plugintest.index.LatexCommandsIndex;
+import nl.abby.plugintest.index.LatexDefinitionIndex;
+import nl.abby.plugintest.index.LatexIncludesIndex;
+import nl.abby.plugintest.psi.LatexCommands;
 import nl.abby.plugintest.util.Magic;
 import nl.abby.plugintest.psi.impl.LatexCommandsImpl;
 import org.jetbrains.annotations.NotNull;
-import psi.LatexCommands;
-import nl.abby.plugintest.Magic;
 
 import java.io.IOException;
 import java.util.List;

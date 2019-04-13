@@ -5,6 +5,9 @@ import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
+import nl.abby.plugintest.psi.LatexInlineMath;
+import nl.abby.plugintest.psi.LatexMathContent;
+import nl.abby.plugintest.psi.LatexVisitor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

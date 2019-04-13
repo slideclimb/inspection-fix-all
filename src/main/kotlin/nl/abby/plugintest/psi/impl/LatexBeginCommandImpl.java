@@ -5,10 +5,10 @@ import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
+import nl.abby.plugintest.psi.LatexBeginCommand;
+import nl.abby.plugintest.psi.LatexParameter;
+import nl.abby.plugintest.psi.LatexVisitor;
 import org.jetbrains.annotations.NotNull;
-import psi.LatexBeginCommand;
-import psi.LatexParameter;
-import psi.LatexVisitor;
 
 import java.util.List;
 

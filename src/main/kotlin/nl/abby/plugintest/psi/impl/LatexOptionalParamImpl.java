@@ -4,6 +4,9 @@ package nl.abby.plugintest.psi.impl;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
+import nl.abby.plugintest.psi.LatexOpenGroup;
+import nl.abby.plugintest.psi.LatexOptionalParam;
+import nl.abby.plugintest.psi.LatexVisitor;
 import org.jetbrains.annotations.NotNull;
 
 import static nl.abby.plugintest.psi.LatexTypes.*;
