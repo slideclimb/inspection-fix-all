@@ -13,9 +13,9 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.util.PsiTreeUtil;
-import nl.rubensten.texifyidea.file.LatexFile;
-import nl.rubensten.texifyidea.psi.LatexInlineMath;
-import nl.rubensten.texifyidea.psi.LatexTypes;
+import nl.abby.plugintest.file.LatexFile;
+import nl.abby.plugintest.psi.LatexInlineMath;
+import nl.abby.plugintest.psi.LatexTypes;
 import nl.abby.plugintest.settings.TexifySettings;
 import org.jetbrains.annotations.NotNull;
 

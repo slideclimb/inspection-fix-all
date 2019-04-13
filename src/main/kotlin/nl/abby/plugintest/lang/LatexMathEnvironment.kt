@@ -1,4 +1,4 @@
-package nl.rubensten.texifyidea.lang
+package nl.abby.plugintest.lang
 
 import nl.abby.plugintest.lang.Argument
 import nl.abby.plugintest.lang.OptionalArgument

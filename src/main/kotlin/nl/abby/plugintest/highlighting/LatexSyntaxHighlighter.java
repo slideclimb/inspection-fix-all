@@ -6,8 +6,8 @@ import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.TokenSet;
-import nl.rubensten.texifyidea.LatexLexerAdapter;
-import nl.rubensten.texifyidea.psi.LatexTypes;
+import nl.abby.plugintest.LatexLexerAdapter;
+import nl.abby.plugintest.psi.LatexTypes;
 import org.jetbrains.annotations.NotNull;
 
 /**

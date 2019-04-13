@@ -1,4 +1,4 @@
-package nl.rubensten.texifyidea.lang
+package nl.abby.plugintest.lang
 
 /**
  * @author Sten Wessel
