@@ -14,11 +14,6 @@ import kotlin.reflect.KClass
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Get the offset where the psi element ends.
- */
-fun PsiElement.endOffset(): Int = textOffset + textLength
-
-/**
  * @see [PsiTreeUtil.getChildrenOfType]
  */
 fun <T : PsiElement> PsiElement.childrenOfType(clazz: KClass<T>): Collection<T> {
@@ -65,16 +60,6 @@ fun PsiElement.inMathContext(): Boolean {
 }
 
 /**
- * @see LatexPsiUtil.getPreviousSiblingIgnoreWhitespace
- */
-fun PsiElement.previousSiblingIgnoreWhitespace() = LatexPsiUtil.getPreviousSiblingIgnoreWhitespace(this)
-
-/**
- * @see LatexPsiUtil.getNextSiblingIgnoreWhitespace
- */
-fun PsiElement.nextSiblingIgnoreWhitespace() = LatexPsiUtil.getNextSiblingIgnoreWhitespace(this)
-
-/**
  * Checks whether the psi element is part of a comment or not.
  */
 fun PsiElement.isComment(): Boolean {
@@ -119,20 +104,3 @@ inline fun PsiElement.forEachChild(action: (PsiElement) -> Unit) {
 fun LatexEnvironment.name(): LatexNormalText? {
     return firstChildOfType(LatexNormalText::class)
 }
-
-/**
- * Checks if the environment contains the given context.
- */
-fun LatexEnvironment.isContext(context: Environment.Context): Boolean {
-    val name = name()?.text ?: return false
-    val environment = Environment[name] ?: return false
-    return environment.context == context
-}
-
-/*
- * Technically it's impossible to determine for all cases whether a users wants to compile with biber or biblatex.
- * But often when people use the biblatex package they use biber.
- * And often, when they use biber they use \printbibliography instead of \bibliography.
- * Hence, the following methods often work - and if they don't, users can easily change the compiler in the run config.
- */
-

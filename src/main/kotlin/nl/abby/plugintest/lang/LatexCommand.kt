@@ -9,40 +9,7 @@ import kotlin.reflect.KClass
  */
 interface LatexCommand : Dependend {
 
-    companion object {
-
-        /**
-         * Looks up the given command name in all [LatexMathCommand]s and [LatexRegularCommand]s.
-         *
-         * @param commandName
-         *          The command name to look up. Can start with or without `\`
-         * @return The found command, or `null` when the command doesn't exist.
-         */
-        fun lookup(commandName: String?): LatexCommand? {
-            var result = commandName ?: return null
-            if (result.startsWith("\\")) {
-                result = result.substring(1)
-            }
-
-            return LatexMathCommand[result] ?: LatexRegularCommand[result]
-        }
-
-        /**
-         * Looks up the given command within context.
-         *
-         * @param command The command PSI element to look up. Takes into account whether it is placed in math mode.
-         * @return The found command, or `null` when the command does not exist.
-         */
-        fun lookup(command: LatexCommands): LatexCommand? {
-            val name = command.commandToken.text
-            val commandName = name.substring(1)
-
-            return if (command.inMathContext()) {
-                LatexMathCommand[commandName]
-            }
-            else LatexRegularCommand[commandName]
-        }
-    }
+    companion object;
 
     /**
      * Get the name of the command without the first backslash.

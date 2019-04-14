@@ -1,9 +1,7 @@
 package nl.abby.plugintest.util
 
 import com.intellij.openapi.editor.Document
-import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.util.TextRange
-import com.intellij.psi.PsiElement
 
 /**
  * Gets all the indentation characters of the line of the given lineNumber.
@@ -28,15 +26,6 @@ fun Document.lineIndentation(lineNumber: Int): String {
 
     return result.toString()
 }
-
-/**
- * Gets all the indentation characters of the line at the given offset.
- *
- * @param lineNumber
- *              The offset of the line to get the indentation of.
- * @return A string containing all the indentation characters. `empty string` when problems arise.
- */
-fun Document.lineIndentationByOffset(offset: Int) = lineIndentation(getLineNumber(offset))
 
 /**
  * Places the given string into the document over the given range.
@@ -65,32 +54,3 @@ operator fun Document.set(offset: Int, value: CharSequence) = replaceString(offs
  */
 operator fun Document.set(range: IntRange, value: CharSequence) = replaceString(range.start, range.endInclusive, value)
 
-/**
- * Deletes the given element from the document.
- *
- * @param element
- *         The element to remove from the document.
- */
-fun Document.deleteElement(element: PsiElement) {
-    val offset = element.textOffset
-    deleteString(offset, offset + element.textLength)
-}
-
-/**
- * Inserts a string into the document and moves the caret to the end of the inserted string.
- *
- * @param offset
- *              Where to insert the string.
- * @param string
- *              The string to insert.
- */
-fun Editor.insertAndMove(offset: Int, string: String) {
-    val document = this.document
-    runWriteAction { document.insertString(offset, string) }
-    caretModel.moveToOffset(caretModel.offset + string.length)
-}
-
-/**
- * @see [CaretModel.offset]
- */
-fun Editor.caretOffset() = caretModel.offset

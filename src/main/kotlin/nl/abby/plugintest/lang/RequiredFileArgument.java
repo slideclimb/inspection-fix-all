@@ -3,7 +3,6 @@ package nl.abby.plugintest.lang;
 import nl.abby.plugintest.file.FileExtensionMatcher;
 import nl.abby.plugintest.file.FileNameMatcher;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -71,10 +70,6 @@ public class RequiredFileArgument extends RequiredArgument implements FileNameMa
 
     private void setRegex(String regex) {
         this.pattern = Pattern.compile(regex);
-    }
-
-    public Set<String> getSupportedExtensions() {
-        return Collections.unmodifiableSet(extensions);
     }
 
     @Override

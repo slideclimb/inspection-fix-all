@@ -31,14 +31,6 @@ open class Package @JvmOverloads constructor(
     }
 
     /**
-     * Checks if this package is the default package ('no package').
-     *
-     * @return `true` when is the default package, `false` if it is any other package.
-     */
-    val isDefault: Boolean
-        get() = equals(DEFAULT)
-
-    /**
      * Creates a new package object with the same name and with the given parameters.
      */
     fun with(vararg parameters: String) = Package(name, *parameters)

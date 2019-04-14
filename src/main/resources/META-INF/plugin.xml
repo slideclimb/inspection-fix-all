@@ -15,15 +15,8 @@
         <!-- Files and project -->
         <fileTypeFactory implementation="nl.abby.plugintest.file.TexifyFileTypeFactory"/>
 
-        <!-- Templates -->
-<!--        <internalFileTemplate name="LaTeX Source"/>-->
-<!--        <internalFileTemplate name="LaTeX Package"/>-->
-
         <!-- Languages -->
         <lang.parserDefinition language="Latex" implementationClass="nl.abby.plugintest.LatexParserDefinition"/>
-<!--        <lang.syntaxHighlighterFactory language="Latex" implementationClass="nl.abby.plugintest.highlighting.LatexSyntaxHighlighterFactory"/>-->
-<!--        <lang.commenter language="Latex" implementationClass="nl.abby.plugintest.editor.LatexCommenter"/>-->
-<!--        <lang.braceMatcher language="Latex" implementationClass="nl.abby.plugintest.highlighting.LatexPairedBraceMatcher"/>-->
 
         <localInspection language="Latex" implementationClass="nl.abby.plugintest.inspections.latex.LatexCdotInspection"
                          groupName="LaTeX" displayName="Use of . instead of \cdot"

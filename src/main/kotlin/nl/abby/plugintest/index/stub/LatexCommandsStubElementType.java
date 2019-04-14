@@ -77,7 +77,7 @@ public class LatexCommandsStubElementType extends IStubElementType<LatexCommands
 
     @Override
     public void indexStub(@NotNull LatexCommandsStub latexCommandsStub, @NotNull IndexSink indexSink) {
-        indexSink.occurrence(LatexCommandsIndex.Companion.key(), latexCommandsStub.getCommandToken());
+//      indexSink.occurrence(LatexCommandsIndex.Companion.key(), latexCommandsStub.getCommandToken());
     }
 
     @NotNull

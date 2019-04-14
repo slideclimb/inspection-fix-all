@@ -20,9 +20,6 @@ public class LatexLexer implements FlexLexer {
   /** This character denotes the end of file */
   public static final int YYEOF = -1;
 
-  /** initial size of the lookahead buffer */
-  private static final int ZZ_BUFFERSIZE = 16384;
-
   /** lexical states */
   public static final int YYINITIAL = 0;
   public static final int INLINE_MATH = 2;
@@ -173,7 +170,6 @@ public class LatexLexer implements FlexLexer {
   /* error codes */
   private static final int ZZ_UNKNOWN_ERROR = 0;
   private static final int ZZ_NO_MATCH = 1;
-  private static final int ZZ_PUSHBACK_2BIG = 2;
 
   /* error messages for the codes above */
   private static final String[] ZZ_ERROR_MSG = {
@@ -210,9 +206,6 @@ public class LatexLexer implements FlexLexer {
     return j;
   }
 
-  /** the input device */
-  private java.io.Reader zzReader;
-
   /** the current state of the DFA */
   private int zzState;
 
@@ -236,16 +229,8 @@ public class LatexLexer implements FlexLexer {
       from input */
   private int zzEndRead;
 
-  /**
-   * zzAtBOL == true <=> the scanner is currently at the beginning of a line
-   */
-  private boolean zzAtBOL = true;
-
   /** zzAtEOF == true <=> the scanner is at the EOF */
   private boolean zzAtEOF;
-
-  /** denotes if the user-EOF-code has already been executed */
-  private boolean zzEOFDone;
 
   /* user code: */
   private Deque<Integer> stack = new ArrayDeque<>();
@@ -260,18 +245,11 @@ public class LatexLexer implements FlexLexer {
   }
 
 
-  public LatexLexer() {
-    this((java.io.Reader)null);
-  }
-
-
   /**
    * Creates a new scanner
    *
-   * @param   in  the java.io.Reader to read input from.
    */
-  public LatexLexer(java.io.Reader in) {
-    this.zzReader = in;
+  public LatexLexer() {
   }
 
 
@@ -309,7 +287,6 @@ public class LatexLexer implements FlexLexer {
     zzBuffer = buffer;
     zzCurrentPos = zzMarkedPos = zzStartRead = start;
     zzAtEOF  = false;
-    zzAtBOL = true;
     zzEndRead = end;
     yybegin(initialState);
   }
@@ -345,30 +322,6 @@ public class LatexLexer implements FlexLexer {
 
 
   /**
-   * Returns the text matched by the current regular expression.
-   */
-  public final CharSequence yytext() {
-    return zzBuffer.subSequence(zzStartRead, zzMarkedPos);
-  }
-
-
-  /**
-   * Returns the character at position <tt>pos</tt> from the
-   * matched text.
-   *
-   * It is equivalent to yytext().charAt(pos), but faster
-   *
-   * @param pos the position of the character to fetch.
-   *            A value from 0 to yylength()-1.
-   *
-   * @return the character at position pos
-   */
-  public final char yycharat(int pos) {
-    return zzBuffer.charAt(zzStartRead+pos);
-  }
-
-
-  /**
    * Returns the length of the matched text region.
    */
   public final int yylength() {
@@ -400,22 +353,6 @@ public class LatexLexer implements FlexLexer {
     }
 
     throw new Error(message);
-  }
-
-
-  /**
-   * Pushes the specified amount of characters back into the input stream.
-   *
-   * They will be read again by then next call of the scanning method
-   *
-   * @param number  the number of characters to be read again.
-   *                This number must not be greater than yylength()!
-   */
-  public void yypushback(int number)  {
-    if ( number > yylength() )
-      zzScanError(ZZ_PUSHBACK_2BIG);
-
-    zzMarkedPos -= number;
   }
 
 

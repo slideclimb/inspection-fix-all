@@ -9,6 +9,6 @@ import nl.abby.plugintest.grammar.LatexLexer;
 public class LatexLexerAdapter extends FlexAdapter {
 
     public LatexLexerAdapter() {
-        super(new LatexLexer(null));
+        super(new LatexLexer());
     }
 }

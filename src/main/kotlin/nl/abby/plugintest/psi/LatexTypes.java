@@ -6,8 +6,6 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.stubs.IStubElementType;
 import com.intellij.psi.tree.IElementType;
 import nl.abby.plugintest.index.stub.LatexCommandsStubElementType;
-import nl.abby.plugintest.psi.LatexElementType;
-import nl.abby.plugintest.psi.LatexTokenType;
 import nl.abby.plugintest.psi.impl.*;
 
 public interface LatexTypes {

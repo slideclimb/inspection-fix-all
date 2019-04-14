@@ -17,69 +17,12 @@ object Magic {
     object Command {
 
         /**
-         * All commands that define new commands.
-         */
-        @JvmField val commandDefinitions = hashSetOf(
-                "\\newcommand",
-                "\\let",
-                "\\def",
-                "\\DeclareMathOperator",
-                "\\newif",
-                "\\NewDocumentCommand",
-                "\\ProvideDocumentCommand",
-                "\\DeclareDocumentCommand"
-        )
-
-        /**
-         * All commands that define new documentclasses.
-         */
-        @JvmField val classDefinitions = hashSetOf("\\ProvidesClass")
-
-        /**
-         * All commands that define new environments.
-         */
-        @JvmField val environmentDefinitions = hashSetOf(
-                "\\newenvironment",
-                "\\NewDocumentEnvironment",
-                "\\ProvideDocumentEnvironment",
-                "\\DeclareDocumentEnvironment"
-        )
-
-        /**
-         * All commands that define stuff like classes, environments, and definitions.
-         */
-        @JvmField val definitions = commandDefinitions + classDefinitions + environmentDefinitions
-
-        /**
-         * All commands that are able to redefine other commands.
-         */
-        @JvmField val redefinitions = hashSetOf("\\renewcommand", "\\def", "\\let", "\\renewenvironment")
-
-        /**
          * All commands that include other files.
          */
         @JvmField val includes = hashSetOf(
                 "\\includeonly", "\\include", "\\input", "\\RequirePackage", "\\usepackage"
         )
 
-        /**
-         * Extensions that should only be scanned for the provided include commands.
-         */
-        @JvmField val includeOnlyExtensions = mapOf(
-                "\\include" to hashSetOf("tex"),
-                "\\includeonly" to hashSetOf("tex"),
-                "\\RequirePackage" to hashSetOf("sty"),
-                "\\usepackage" to hashSetOf("sty")
-        )
-
-        /**
-         * All commands that mark some kind of section.
-         */
-        @JvmField val sectionMarkers = listOf(
-                "\\part", "\\chapter",
-                "\\section", "\\subsection", "\\subsubsection",
-                "\\paragraph", "\\subparagraph"
-        )
     }
 
     /**
@@ -99,16 +42,6 @@ object Magic {
          */
         @JvmField val sentenceSeperator = RegexPattern.compile("[.?!;;]")!!
 
-        /**
-         * Matches all leading whitespace.
-         */
-        @JvmField val leadingWhitespace = RegexPattern.compile("^\\s*")!!
-
-        /**
-         * Matches newlines.
-         */
-        @JvmField val newline = RegexPattern.compile("\\n")!!
-
     }
 
     /**
@@ -122,10 +55,5 @@ object Magic {
         @JvmField val includeExtensions = hashSetOf("tex")
 
     }
-    
-    /**
-     * @author Ruben Schellekens
-     */
-    object Package
 
 }
