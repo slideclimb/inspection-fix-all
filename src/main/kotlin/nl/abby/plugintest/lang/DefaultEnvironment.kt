@@ -63,11 +63,6 @@ enum class DefaultEnvironment(
         RequiredArgument("width"),
         OptionalArgument("pos"),
         RequiredArgument("cols"), environmentName = "tabular*"),
-    THEBIBLIOGRAPHY(environmentName = "thebibliography", arguments = *arrayOf(
-        RequiredArgument(
-            "widestlabel"
-        )
-    )),
     THEINDEX(environmentName = "theindex"),
     THEOREM(environmentName = "theorem", arguments = *arrayOf(OptionalArgument("optional"))),
     TINY(environmentName = "tiny"),

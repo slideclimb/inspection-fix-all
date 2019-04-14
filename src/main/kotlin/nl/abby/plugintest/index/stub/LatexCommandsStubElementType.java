@@ -3,10 +3,7 @@ package nl.abby.plugintest.index.stub;
 import com.intellij.psi.stubs.*;
 import nl.abby.plugintest.LatexLanguage;
 import nl.abby.plugintest.index.LatexCommandsIndex;
-import nl.abby.plugintest.index.LatexDefinitionIndex;
-import nl.abby.plugintest.index.LatexIncludesIndex;
 import nl.abby.plugintest.psi.LatexCommands;
-import nl.abby.plugintest.util.Magic;
 import nl.abby.plugintest.psi.impl.LatexCommandsImpl;
 import org.jetbrains.annotations.NotNull;
 
@@ -81,15 +78,6 @@ public class LatexCommandsStubElementType extends IStubElementType<LatexCommands
     @Override
     public void indexStub(@NotNull LatexCommandsStub latexCommandsStub, @NotNull IndexSink indexSink) {
         indexSink.occurrence(LatexCommandsIndex.Companion.key(), latexCommandsStub.getCommandToken());
-
-        String token = latexCommandsStub.getCommandToken();
-        if (Magic.Command.includes.contains(token)) {
-            indexSink.occurrence(LatexIncludesIndex.Companion.key(), token);
-        }
-
-        if (Magic.Command.definitions.contains(token) || Magic.Command.redefinitions.contains(token)) {
-            indexSink.occurrence(LatexDefinitionIndex.Companion.key(), token);
-        }
     }
 
     @NotNull

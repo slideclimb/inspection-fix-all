@@ -11,10 +11,7 @@ class TexifyFileTypeFactory : FileTypeFactory() {
 
     override fun createFileTypes(consumer: FileTypeConsumer) {
         consumer.register(
-                LatexFileType,
-                StyleFileType,
-                ClassFileType,
-                TikzFileType
+                LatexFileType
         )
     }
 

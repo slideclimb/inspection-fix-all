@@ -1,8 +1,5 @@
 package nl.abby.plugintest.lang
 
-import nl.abby.plugintest.lang.Argument
-import nl.abby.plugintest.lang.OptionalArgument
-import nl.abby.plugintest.lang.RequiredArgument
 import java.util.*
 
 /**

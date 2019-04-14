@@ -2,7 +2,6 @@ package nl.abby.plugintest.insight
 
 import com.intellij.openapi.fileTypes.FileType
 import nl.abby.plugintest.file.LatexFileType
-import nl.abby.plugintest.file.StyleFileType
 
 /**
  * @author Ruben Schellekens
@@ -25,5 +24,5 @@ enum class InsightGroup(
         val fileTypes: Set<FileType>
 ) {
 
-    LATEX("LaTeX", "Latex", setOf(LatexFileType, StyleFileType)),
+    LATEX("LaTeX", "Latex", setOf(LatexFileType)),
 }

@@ -66,45 +66,24 @@ public interface LatexCommands extends StubBasedPsiElement<LatexCommandsStub>, P
 
                     return Stream.of(rp.getGroup());
                 })
-                .map(group -> {
-                    return String.join("", group.getContentList().stream()
-                            .flatMap(c -> {
-                                LatexNoMathContent content = c.getNoMathContent();
+                .map(group -> String.join("", group.getContentList().stream()
+                        .flatMap(c -> {
+                            LatexNoMathContent content = c.getNoMathContent();
 
-                                if (content == null) {
-                                    return Stream.empty();
-                                }
-
-                                if (content.getCommands() != null && content.getNormalText() == null) {
-                                    return Stream.of(content.getCommands().getCommandToken().getText());
-                                }
-                                else if (content.getNormalText() != null) {
-                                    return Stream.of(content.getNormalText().getText());
-                                }
-
+                            if (content == null) {
                                 return Stream.empty();
-                            })
-                            .collect(Collectors.toList()));
-                })
+                            }
+
+                            if (content.getCommands() != null && content.getNormalText() == null) {
+                                return Stream.of(content.getCommands().getCommandToken().getText());
+                            }
+                            else if (content.getNormalText() != null) {
+                                return Stream.of(content.getNormalText().getText());
+                            }
+
+                            return Stream.empty();
+                        })
+                        .collect(Collectors.toList())))
                 .collect(Collectors.toList());
-    }
-
-    /**
-     * Checks if the command is followed by a label.
-     */
-    default boolean hasLabel() {
-        PsiElement grandparent = getParent().getParent();
-        PsiElement sibling = LatexPsiUtil.getNextSiblingIgnoreWhitespace(grandparent);
-        if (sibling == null) {
-            return false;
-        }
-
-        Collection<LatexCommands> children = PsiTreeUtil.findChildrenOfType(sibling, LatexCommands.class);
-        if (children.isEmpty()) {
-            return false;
-        }
-
-        LatexCommands labelMaybe = children.iterator().next();
-        return "\\label".equals(labelMaybe.getName());
     }
 }

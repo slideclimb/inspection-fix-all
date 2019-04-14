@@ -1,7 +1,7 @@
 package nl.abby.plugintest.file
 import com.intellij.openapi.fileTypes.LanguageFileType
 import nl.abby.plugintest.LatexLanguage
-import nl.abby.plugintest.TexifyIcons
+import javax.swing.Icon
 
 /**
  * @author Sten Wessel
@@ -14,5 +14,5 @@ object LatexFileType : LanguageFileType(LatexLanguage.INSTANCE) {
 
     override fun getDefaultExtension() = "tex"
 
-    override fun getIcon() = TexifyIcons.LATEX_FILE!!
+    override fun getIcon(): Icon? = null
 }
