@@ -7,12 +7,12 @@ import java.util.regex.Pattern
  * @author Ruben Schellekens
  */
 open class LatexCdotInspection : TexifyRegexInspection(
-        inspectionDisplayName = "Use of . instead of \\cdot",
-        myInspectionId = "Cdot",
-        errorMessage = { "\\cdot expected" },
-        pattern = Pattern.compile("\\s+(\\.)\\s+"),
-        mathMode = true,
-        replacement = { _, _ -> "\\cdot" },
-        replacementRange = { it.groupRange(1) },
-        quickFixName = { "Change to \\cdot" }
-)
+    inspectionDisplayName = "Use of . instead of \\cdot",
+    pattern = Pattern.compile("\\s+(\\.)\\s+"),
+    errorMessage = { "\\cdot expected" },
+    replacement = { _, _ -> "\\cdot" },
+    replacementRange = { it.groupRange(1) },
+    quickFixName = { "Change to \\cdot" }
+) {
+    override fun getShortName(): String = "LatexCdot"
+}

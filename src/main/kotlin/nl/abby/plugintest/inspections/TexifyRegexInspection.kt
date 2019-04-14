@@ -6,13 +6,8 @@ import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.TextRange
-import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import nl.abby.plugintest.insight.InsightGroup
 import nl.abby.plugintest.util.document
-import nl.abby.plugintest.util.hasParent
-import nl.abby.plugintest.util.inMathContext
-import nl.abby.plugintest.util.isComment
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import kotlin.reflect.jvm.internal.impl.utils.SmartList
@@ -22,72 +17,62 @@ import kotlin.reflect.jvm.internal.impl.utils.SmartList
  */
 abstract class TexifyRegexInspection(
 
-        /**
-         * The display name of the inspection.
-         */
-        val inspectionDisplayName: String,
+    /**
+     * The display name of the inspection.
+     */
+    val inspectionDisplayName: String,
 
-        /**
-         * The short name of the inspection (same name as the html info file.
-         */
-        val myInspectionId: String,
+    /**
+     * The regex pattern that targets the text for the inspection.
+     */
+    val pattern: Pattern,
 
-        /**
-         * The regex pattern that targets the text for the inspection.
-         */
-        val pattern: Pattern,
+    /**
+     * The error message that shows up when you hover over the problem descriptor.
+     */
+    val errorMessage: (Matcher) -> String,
 
-        /**
-         * The error message that shows up when you hover over the problem descriptor.
-         */
-        val errorMessage: (Matcher) -> String,
+    /**
+     * What to replace in the document.
+     */
+    val replacement: (Matcher, PsiFile) -> String = { _, _ -> "" },
 
-        /**
-         * What to replace in the document.
-         */
-        val replacement: (Matcher, PsiFile) -> String = { _, _ -> "" },
+    /**
+     * Fetches different groups from a matcher.
+     */
+    val groupFetcher: (Matcher) -> List<String> = { listOf() },
 
-        /**
-         * Fetches different groups from a matcher.
-         */
-        val groupFetcher: (Matcher) -> List<String> = { listOf() },
+    /**
+     * The range in the found pattern that must be replaced.
+     */
+    val replacementRange: (Matcher) -> IntRange = { it.start()..it.end() },
 
-        /**
-         * The range in the found pattern that must be replaced.
-         */
-        val replacementRange: (Matcher) -> IntRange = { it.start()..it.end() },
+    /**
+     * The highlight level of the problem, WEAK_WARNING by default.
+     */
+    val highlight: ProblemHighlightType = ProblemHighlightType.WEAK_WARNING,
 
-        /**
-         * The highlight level of the problem, WEAK_WARNING by default.
-         */
-        val highlight: ProblemHighlightType = ProblemHighlightType.WEAK_WARNING,
+    /**
+     * Name of the quick fix.
+     */
+    val quickFixName: (Matcher) -> String = { "Do fix pls" },
 
-        /**
-         * Name of the quick fix.
-         */
-        val quickFixName: (Matcher) -> String = { "Do fix pls" },
+    /**
+     * Predicate that if `true`, cancels the inspection.
+     */
+    val cancelIf: (Matcher, PsiFile) -> Boolean = { _, _ -> false },
 
-        /**
-         * `true` when the inspection is in mathmode, `false` (default) when not in math mode.
-         */
-        val mathMode: Boolean = false,
+    /**
+     * Provides the text ranges that mark the squiggly warning thingies.
+     */
+    val highlightRange: (Matcher) -> TextRange = {
+        TextRange(
+            it.start(),
+            it.end()
+        )
+    }
 
-        /**
-         * Predicate that if `true`, cancels the inspection.
-         */
-        val cancelIf: (Matcher, PsiFile) -> Boolean = { _, _ -> false },
-
-        /**
-         * Provides the text ranges that mark the squiggly warning thingies.
-         */
-        val highlightRange: (Matcher) -> TextRange = { TextRange(it.start(), it.end()) },
-
-        /**
-         * In which inspection group the inspection lies.
-         */
-        val group: InsightGroup = InsightGroup.LATEX
-
-) : nl.abby.plugintest.inspections.TexifyInspectionBase() {
+) : TexifyInspectionBase() {
 
     companion object {
 
@@ -96,22 +81,9 @@ abstract class TexifyRegexInspection(
          */
         fun Matcher.groupRange(groupId: Int): IntRange = start(groupId)..end(groupId)
 
-        /**
-         * Checks if the matched element is a child of a certain PsiElement.
-         */
-        inline fun <reified T : PsiElement> isInElement(matcher: Matcher, file: PsiFile): Boolean {
-            val element = file.findElementAt(matcher.start()) ?: return false
-            return element.hasParent(T::class)
-        }
     }
 
     override fun getDisplayName() = inspectionDisplayName
-
-    override fun getInspectionId() = myInspectionId
-
-    override fun getInspectionGroup() = group
-
-    override fun checkContext(element: PsiElement) = true
 
     override fun inspectFile(file: PsiFile, manager: InspectionManager, isOntheFly: Boolean): MutableList<ProblemDescriptor> {
         val descriptors = SmartList<ProblemDescriptor>()
@@ -132,12 +104,6 @@ abstract class TexifyRegexInspection(
             val quickFix = quickFixName(matcher)
             val replacementContent = replacement(matcher, file)
 
-            // Correct context.
-            val element = file.findElementAt(matcher.start()) ?: continue
-            if (!checkContext(matcher, element)) {
-                continue
-            }
-
             descriptors.add(manager.createProblemDescriptor(
                     file,
                     textRange,
@@ -155,21 +121,6 @@ abstract class TexifyRegexInspection(
         }
 
         return descriptors
-    }
-
-    /**
-     * Checks if the element is in the correct context.
-     *
-     * By default checks for math mode.
-     *
-     * @return `true` if the inspection is allowed in the context, `false` otherwise.
-     */
-    open fun checkContext(matcher: Matcher, element: PsiElement): Boolean {
-        if (element.isComment()) {
-            return false
-        }
-
-        return mathMode == element.inMathContext() && checkContext(element)
     }
 
     /**
